@@ -48,7 +48,8 @@ export default function SignupPage() {
           location: location.value,
         });
         localStorage.setItem("Gold_token", response?.token);
-
+      console.log(response)
+      console.log(response?.token)
         // After successful registration, fetch the user details using the token
 
 
