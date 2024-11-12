@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create an instance of axios with default headers and baseURL
 const api = axios.create({
-  baseURL: 'http://localhost:5000', // Replace with your backend URL
+  baseURL: 'https://gold-backend-eta.vercel.app', // Replace with your backend URL
 });
 
 // Function to get the token from localStorage
