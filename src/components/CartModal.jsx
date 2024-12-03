@@ -7,8 +7,8 @@ const CartModal = ({ isOpen, onClose, data }) => {
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex justify-end bg-black bg-opacity-30">
-            <div className="w-96 bg-white h-full shadow-lg relative">
+        <div className="fixed inset-0 z-50 flex justify-end bg-black bg-opacity-30 ">
+            <div className="w-96 bg-white h-full shadow-lg relative overflow-auto">
                 <button
                     onClick={onClose}
                     className="absolute top-4 right-4 text-gray-600 hover:text-gray-900"
@@ -19,11 +19,11 @@ const CartModal = ({ isOpen, onClose, data }) => {
                 <div className="p-4">
                     {data?.length ? (
                         data.map((item, index) => (
-                            <Link 
-                            to={`/${item.productId.slug}`} 
-                            key={index} 
-                            className="flex gap-3 p-2 border-b"
-                            onClick={onClose}
+                            <Link
+                                to={`/${item.productId?.slug}`}
+                                key={index}
+                                className="flex gap-3 p-2 border-b"
+                                onClick={onClose}
                             >
                                 <div>
                                     <img src={item?.productId?.images[0]}
@@ -31,9 +31,9 @@ const CartModal = ({ isOpen, onClose, data }) => {
                                         alt="" />
                                 </div>
                                 <div className='text-sm text-gray-700'>
-                                    <p>Title: {item.productId.title}</p>
-                                    <p>Price : {item.productId.price} /-</p>
-                                    <p>Category : {item.productId.category}</p>
+                                    <p>Title: {item.productId?.title}</p>
+                                    <p>Price : {item.productId?.price} /-</p>
+                                    <p>Category : {item.productId?.category}</p>
                                 </div>
                             </Link>
                         ))

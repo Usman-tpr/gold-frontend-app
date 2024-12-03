@@ -54,7 +54,10 @@ export default function ProductCard({ item }) {
             </div>
             <div
               className="relative flex justify-end"
-              onMouseEnter={() => setShowPopup(true)}
+              // onClick={(event) => {
+              //   event.stopPropagation(); 
+              //   setShowPopup(true);
+              // }}
             >
               <FiShoppingCart className="text-black w-4 h-4 mr-1 cursor-pointer" />
             </div>
@@ -82,43 +85,7 @@ export default function ProductCard({ item }) {
         </Link>
       </div>
 
-      {/* Popup Modal */}
-      {showPopup && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white p-4 rounded-lg shadow-lg w-64 md:w-80 lg:w-96 relative">
-            {/* Close button */}
-            <button
-              className="absolute top-2 z-10 right-2 text-gray-600 hover:text-black"
-              onMouseEnter={() => setShowPopup(false)}
-            >
-              <IoClose className="w-5 h-5" />
-            </button>
-
-            {/* Product Details */}
-            <div className="relative overflow-hidden rounded-t-lg">
-              {item?.images[0] && (
-                <img
-                  src={item?.images[0] || `/assets/images/alt-img.webp`}
-                  className="w-full h-[140px] md:h-[170px] xl:h-[200px] object-cover transition-transform duration-500 ease-in-out hover:scale-105"
-                  alt={item.name}
-                />
-              )}
-            </div>
-            <h2 className="text-lg font-semibold mb-2">{item.title}</h2>
-            <p className="text-sm text-gray-700 mb-4">
-              {stringConcat(item.description, 100)}
-            </p>
-
-            {/* Add to Cart Button */}
-            <button
-              onClick={() => handleAddToCart(item._id)}
-              className="w-full bg-yellow-600 text-white py-2 rounded-md font-medium hover:bg-yellow-300 transition"
-            >
-              Add to Cart
-            </button>
-          </div>
-        </div>
-      )}
+    
     </>
   );
 }

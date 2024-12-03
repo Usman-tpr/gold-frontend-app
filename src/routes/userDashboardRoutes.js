@@ -1,3 +1,4 @@
+import ManageCart from "../components/user-dashboard-components/manage-cart/ManageCart";
 import MainUserDashboardPage from "../pages/user-dashboard-pages/main-dashboard-page/MainUserDashboardPage";
 import MyDealsPage from "../pages/user-dashboard-pages/manage-deals/MyDealsPage";
 import AllProductsPage from "../pages/user-dashboard-pages/manage-products/AllProductsPage";
@@ -19,6 +20,10 @@ const userDashboardRoutes = [
     {
         path: "manage-deals",
         element: <MyDealsPage />,
+    },
+    {
+        path: "manage-cart",
+        element: <ManageCart />,
     },
 
 ];

@@ -3,8 +3,7 @@ import { FaTrash } from 'react-icons/fa';
 import ConfirmationPopup from '../../../common/ConfirmationPopup';
 import { deleteRequest } from '../../../Requests/Request'; // Assuming you have a deleteRequest function
 
-const AdminDealCard = React.memo(({ item, seller, dealId }) => {
-  console.log("Deal" , item)
+const AdminDealCard = React.memo(({ item, seller, dealId , setDeleted }) => {
   const [showConfirmPopup, setShowConfirmPopup] = useState(false);
 
   const handleCancel = () => {
@@ -16,8 +15,8 @@ const AdminDealCard = React.memo(({ item, seller, dealId }) => {
       const token = localStorage.getItem("Gold_token");
       if (token) {
         await deleteRequest(`/deal/${dealId}`, token);  // Call deleteRequest with the deal ID
-        // Optionally, you can handle success like closing the popup or refreshing the list here
         alert('Deal deleted successfully!');
+        setDeleted(true)
       }
     } catch (error) {
       console.error("Error deleting deal:", error);

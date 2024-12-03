@@ -24,7 +24,7 @@ const Navbar = () => {
           // Fetch user details
           const userResponse = await getRequest("/user");
           setUserDetails(userResponse.body); // Store the user details in state
-          
+
           // Fetch cart data
           const cartResponse = await getRequest("/product/get-my-carts");
           setCart(cartResponse); // Store the cart data in state
@@ -47,34 +47,31 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-6">
-            <Link to='/' className="text-gray-700 hover:text-yellow-500 transition duration-300">
+            <Link to='/' className="text-gray-700 relative group">
               Home
+              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <Link to='/' className="text-gray-700 hover:text-yellow-500 transition duration-300">
+            <Link to='/shop' className="text-gray-700 relative group">
               Shop
+              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <Link to='/' className="text-gray-700 hover:text-yellow-500 transition duration-300">
-              About
+            <Link to='/shop' className="text-gray-700 relative group">
+              Groom Sets
+              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <Link to='/' className="text-gray-700 hover:text-yellow-500 transition duration-300">
-              Contact
+            <Link to='/shop' className="text-gray-700 relative group">
+              Jwellery On Rent
+              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <div className="relative group">
-              <button className="text-gray-700 hover:text-yellow-500 transition duration-300">
-                Categories
-              </button>
-              <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition duration-300">
-                <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                  Rings
-                </a>
-                <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                  Necklaces
-                </a>
-                <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                  Bracelets
-                </a>
-              </div>
-            </div>
+            <Link to='/shop' className="text-gray-700 relative group">
+              Blogs
+              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-500 transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+         
+          
+          
+
+
           </div>
 
           <div className="hidden md:flex items-center space-x-6">
@@ -125,7 +122,7 @@ const Navbar = () => {
       </div>
 
       {/* Cart Modal */}
-      <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} data={cart?.products}/>
+      <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} data={cart?.products} />
     </nav>
   );
 };

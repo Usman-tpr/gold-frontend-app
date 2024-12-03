@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { getRequest, postRequest } from '../../Requests/Request';  // Assuming `postRequest` is defined in your `request.js` file
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { FiShoppingCart } from "react-icons/fi";
 
 const SingleProductOverview = () => {
   const navigate = useNavigate();
@@ -15,6 +16,8 @@ const SingleProductOverview = () => {
   const [singleProduct, setSingleProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const [cartResponse, setCartResponse] = useState(null);
 
   const [showConfirmPopup, setShowConfirmPopup] = useState(false);
   const [selectedSellerId, setSelectedSellerId] = useState(null);
@@ -38,7 +41,18 @@ const SingleProductOverview = () => {
     if (slug) {
       fetchSingleProduct();
     }
-  }, [slug]);
+  }, [slug , setCartResponse , cartResponse]);
+
+  const handleAddToCart = async (id) => {
+    try {
+      const response = await postRequest("/product/add-to-cart", { productId: id });
+      setCartResponse(response)
+      toast.success(response?.message || "Item added to cart successfully!");
+    } catch (error) {
+      toast.error("Failed to add item to cart");
+      console.error("Error adding to cart:", error);
+    }
+  };
 
   const images = singleProduct ? singleProduct?.images : [];
 
@@ -157,14 +171,24 @@ const SingleProductOverview = () => {
               </p>
             </div>
 
-            <div className="z-10">
+            <div className="z-10 flex justify-between space-x-10">
               <button
                 onClick={() =>
                   handleBookNowClick(singleProduct?.userId, singleProduct?._id)
                 }
-                className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 rounded-lg text-lg flex items-center justify-center gap-2 shadow-lg hover:shadow-2xl transform transition-transform hover:scale-105"
+                className="w-full  bg-yellow-600 text-white font-bold py-4 rounded-lg text-lg flex items-center justify-center gap-2 shadow-lg hover:shadow-2xl transform transition-transform hover:scale-105"
               >
                 <AiOutlineShoppingCart size={24} /> Book Now
+              </button>
+              <button
+                className="w-full  bg-yellow-600 text-white font-bold py-4 rounded-lg text-lg flex items-center justify-center gap-2 shadow-lg hover:shadow-2xl transform transition-transform hover:scale-105"
+               onClick={() => 
+
+                handleAddToCart(singleProduct?._id)
+               }
+              >
+                <FiShoppingCart className="text-white w-4 h-4 mr-1 cursor-pointer" size={24}/> Add To Cart
+
               </button>
             </div>
           </div>

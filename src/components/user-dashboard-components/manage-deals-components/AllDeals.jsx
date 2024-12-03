@@ -7,6 +7,7 @@ import { getRequest } from '../../../Requests/Request'; // Assuming this is your
 const AllDeals = () => {
   const [loading, setLoading] = useState(true);
   const [myDeals, setMyDeals] = useState([]);
+  const [deleted , setDeleted ] = useState(false)
 
   useEffect(() => {
     const fetchDeals = async () => {
@@ -21,11 +22,12 @@ const AllDeals = () => {
         console.error("Error fetching deals:", error);
       } finally {
         setLoading(false);
+        setDeleted(false)
       }
     };
 
     fetchDeals();
-  }, []); // Empty dependency array ensures this runs only once on component mount
+  }, [deleted]); // Empty dependency array ensures this runs only once on component mount
 
   return (
     <>
@@ -65,6 +67,7 @@ const AllDeals = () => {
                     item={item?.productId}
                     seller={item?.sellerId}
                     dealId={item._id}
+                    setDeleted={setDeleted}
                   />
                 ))
               : 'No Products Found'}

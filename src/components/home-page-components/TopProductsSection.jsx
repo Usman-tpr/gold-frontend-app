@@ -26,13 +26,13 @@ const TopProductsSection = ({homeData}) => {
             {/* Product Cards Section */}
             <div className="flex items-center gap-9 xl:gap-7">
               {item.products.slice(0, 4).map((product) => (
-                <Link
+                <div
                   // to={`/${product.slug}`}
                   className="flex-none"
                   key={product._id}
                 >
                   <ProductCard item={product} />
-                </Link>
+                </div>
               ))}
             </div>
           </div>

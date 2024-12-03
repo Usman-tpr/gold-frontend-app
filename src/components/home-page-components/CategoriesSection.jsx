@@ -47,11 +47,11 @@ const CategoriesSection = ( { data } ) => {
   };
 
   return (
-    <section className="relative py-12 bg-gray-50">
+    <section className="relative py-5 bg-gray-200 my-20">
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-800">Browse Categories</h2>
+          <h2 className="text-2xl font-bold text-gray-800">Browse Categories</h2>
           <p className="mt-2 text-gray-600">Explore a wide range of jewelry items.</p>
         </div>
 
@@ -72,7 +72,7 @@ const CategoriesSection = ( { data } ) => {
                 <div className="flex justify-center items-center mb-4 rounded-full">
                    <img
                    src={category.image}
-                   className='rounded-full w-32 h-32 cursor-pointer'
+                   className='rounded-full w-24 h-24 cursor-pointer'
                    alt="" 
                    />
                 </div>

@@ -3,6 +3,8 @@ import MainHeroSection from "../../components/home-page-components/MainHeroSecti
 import CategoriesSection from "../../components/home-page-components/CategoriesSection";
 import TopProductsSection from "../../components/home-page-components/TopProductsSection";
 import { getRequest } from "../../Requests/Request";
+import FullSet from "../../components/home-page-components/FullSet";
+import Footer from "../../components/Footer";
 
 export default function HomePage() {
   const [categories, setCategories] = useState([]);
@@ -34,8 +36,11 @@ export default function HomePage() {
   return (
     <>
       <MainHeroSection />
+      <FullSet />
       <CategoriesSection data={categories} />
       <TopProductsSection homeData={homeProducts} />
+      <Footer />
+
     </>
   );
 }

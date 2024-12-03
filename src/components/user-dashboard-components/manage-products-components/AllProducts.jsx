@@ -8,6 +8,7 @@ import AdminProductCard from "./AdminProductCard";
 
 export default function AllProducts() {
     const dispatch = useDispatch();
+    const [deleted , setDeleted ]= useState(false)
     const { loading, message, error, data, statusCode } = useSelector(
       (state) => state.user
     );
@@ -17,7 +18,8 @@ export default function AllProducts() {
 
     useEffect(() => {
         dispatch(getProducts());
-      }, []);
+        setDeleted(false)
+      }, [setDeleted , deleted]);
 
 
       const handleSearch = (e) => {
@@ -100,7 +102,7 @@ export default function AllProducts() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {data?.data?.body?.length > 0
               ? data?.data?.body?.map((item) => (
-                  <AdminProductCard key={item._id} item={item} />
+                  <AdminProductCard key={item._id} item={item} setDeleted={setDeleted} />
                 ))
               : "No Products Found"}
           </div>

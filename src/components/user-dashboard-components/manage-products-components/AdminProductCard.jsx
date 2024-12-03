@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaTrash, FaEdit } from 'react-icons/fa';
+import { IoClose } from 'react-icons/io5';
+import { stringConcat } from '../../../functions/helperFuntions';
+import { deleteRequest } from '../../../Requests/Request';
+import { toast } from 'react-toastify';
 
-export default function AdminProductCard({ item }) {
+export default function AdminProductCard({ item , setDeleted }) {
+  const [showPopup, setShowPopup] = useState(false);
+  const handleDelete = async (id) =>{
+    try {
+      const response = await deleteRequest(`/product/delete/${id}`)
+      toast.success("deleted Successfully");
+      setDeleted(true)
+      setShowPopup(false)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
+  <>
     <div className="bg-white border border-gray-200 shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
       {/* Full-Width Product Image */}
       <div className="w-full h-48 bg-gray-100 flex items-center overflow-hidden">
@@ -22,7 +39,7 @@ export default function AdminProductCard({ item }) {
 
         {/* Description */}
         <p className="text-sm text-gray-600 mb-3 line-clamp-2">
-          {item.description}
+          {item.desc}
         </p>
 
         {/* Category & Location */}
@@ -43,11 +60,47 @@ export default function AdminProductCard({ item }) {
 
           <button
             className="flex items-center justify-center w-full text-white bg-red-500 hover:bg-red-600 px-4 py-2 rounded-md text-sm font-medium transition-colors"
+            onClick={()=> setShowPopup(true)}
           >
             <FaTrash className="mr-1" /> Delete
           </button>
         </div>
       </div>
     </div>
+
+       {showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-4 rounded-lg shadow-lg w-64 md:w-80 lg:w-96 relative">
+            <button
+              className="absolute top-2 z-10 right-2 text-gray-600 hover:text-black"
+              onClick={() => setShowPopup(false)}
+            >
+              <IoClose className="w-5 h-5" />
+            </button>
+
+            <div className="relative overflow-hidden rounded-t-lg">
+              {item?.images[0] && (
+                <img
+                  src={item?.images[0] || `/assets/images/alt-img.webp`}
+                  className="w-full h-[140px] md:h-[170px] xl:h-[200px] object-cover transition-transform duration-500 ease-in-out hover:scale-105"
+                  alt={item.name}
+                />
+              )}
+            </div>
+            <h2 className="text-lg font-semibold mb-2">{item.title}</h2>
+            <p className="text-sm text-gray-700 mb-4">
+              {stringConcat(item.desc, 100)}
+            </p>
+
+            <button
+              onClick={() => handleDelete(item._id)}
+              className="w-full bg-yellow-600 text-white py-2 rounded-md font-medium hover:bg-yellow-300 transition"
+            >
+              Delete Product
+            </button>
+          </div>
+        </div>
+      )}
+  </>
   );
 }

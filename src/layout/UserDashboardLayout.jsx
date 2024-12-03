@@ -56,23 +56,7 @@ const UserDashboardLayout = ({ children }) => {
 
             {/* Main Navigation Items */}
             <div className="mt-10 flex-grow">
-              <NavLink
-                to="/admin-dashboard"
-                end
-                className={({ isActive }) =>
-                  `flex items-center p-4 cursor-pointer whitespace-nowrap overflow-hidden ${
-                    isActive
-                      ? "bg-blue-950 text-white"
-                      : "text-black hover:bg-blue-950 hover:text-white"
-                  }`
-                }
-              >
-                <SidebarItem
-                  icon={<RiDashboardFill size={30} />}
-                  title="Dashboard"
-                  isOpen={isSidebarOpen}
-                />
-              </NavLink>
+          
               <NavLink
                 to="/user-dashboard/manage-product"
                 className={({ isActive }) =>
@@ -83,9 +67,9 @@ const UserDashboardLayout = ({ children }) => {
                   }`
                 }
               >
-                <SidebarItem
-                  icon={<IoCartOutline size={30} />}
-                  title="All Users"
+              <SidebarItem
+                  icon={<RiDashboardFill size={30} />}
+                  title="Dashboard"
                   isOpen={isSidebarOpen}
                 />
               </NavLink>
@@ -102,6 +86,22 @@ const UserDashboardLayout = ({ children }) => {
                 <SidebarItem
                   icon={<FaIdeal size={30} />}
                   title="Deals"
+                  isOpen={isSidebarOpen}
+                />
+              </NavLink>
+              <NavLink
+                to="/user-dashboard/manage-cart"
+                className={({ isActive }) =>
+                  `flex items-center p-4 cursor-pointer whitespace-nowrap overflow-hidden ${
+                    isActive
+                      ? "bg-blue-950 text-white"
+                      : "text-black hover:bg-blue-950 hover:text-white"
+                  }`
+                }
+              >
+                <SidebarItem
+                  icon={<IoCartOutline size={30} />}
+                  title="Carts"
                   isOpen={isSidebarOpen}
                 />
               </NavLink>

@@ -5,7 +5,7 @@ import BreadCrums from '../../common/BreadCrums';
 import SidebarFilter from '../../components/Search-page-components/SidebarFilter';
 import ProductCard from '../../common/ProductCard';
 
-const SearchPage = () => {
+const ShopPage = () => {
   const [searchQuery, setSearchQuery] = useState();
   const [showDropdown, setShowDropdown] = useState(false);
   const [subCategory, setSubCategory] = useState('');
@@ -18,9 +18,9 @@ const SearchPage = () => {
   const fetchProducts = async (query) => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:5000/product/search?q=${query}`); // Update port if necessary
+      const response = await axios.get(`http://localhost:5000/product/all-products`); // Update port if necessary
       // console.log("the search resposne" , response.data)
-      setProducts(response.data?.body || []);
+      setProducts(response.data?.body);
     } catch (error) {
       console.error("Error fetching products:", error);
       setProducts([]);
@@ -29,20 +29,11 @@ const SearchPage = () => {
     }
   };
 
-  const handleSearch = () => {
-    fetchProducts(searchQuery || subCategory || category);
-  };
 
   useEffect(() => {
 
-    if(searchQuery){
-      fetchProducts(searchQuery);
-    }
-    else{
-      fetchProducts(subCategory || category);
-
-    }
-  }, [category, subCategory , setSearchQuery]);
+  fetchProducts()
+  }, []);
 
   return (
     <>
@@ -62,7 +53,7 @@ const SearchPage = () => {
             />
             <button
               className="px-6 py-3 bg-yellow-500 text-white font-semibold hover:bg-yellow-600 transition duration-300"
-              onClick={handleSearch}
+            //   onClick={handleSearch}
             >
               Search
             </button>
@@ -87,14 +78,20 @@ const SearchPage = () => {
               path: '/',
             },
             {
-              name: 'Search Results',
+              name: 'All Products',
             },
           ]}
         />
 
         <div className="flex justify-between">
-          <div className="w-1/5 flex items-start ">
-            <SidebarFilter setSubCategory={setSubCategory} />
+          <div className="w-1/5 flex items-start flex-col space-y-2 ">
+          <h1 className='mt-3 border-b-2 border-black'>Smart Filter</h1>
+           <h1 className='mt-4 text-blue-950 hover:text-yellow-600 cursor-pointer'>Low to High Price</h1>
+           <h1 className='text-blue-950 hover:text-yellow-600 cursor-pointer'>High to Low Price</h1>
+           <h1 className='text-blue-950 hover:text-yellow-600 cursor-pointer'>Gold</h1>
+           <h1 className='text-blue-950 hover:text-yellow-600 cursor-pointer'>Silver</h1>
+           <h1 className='text-blue-950 hover:text-yellow-600 cursor-pointer'>Platinum</h1>
+           <h1 className='text-blue-950 hover:text-yellow-600 cursor-pointer'>22k Karat Gold</h1>
           </div>
 
           <div className="w-2/3 flex flex-wrap items-center gap-9 xl:gap-7">
@@ -116,4 +113,4 @@ const SearchPage = () => {
   );
 };
 
-export default SearchPage;
+export default ShopPage;
