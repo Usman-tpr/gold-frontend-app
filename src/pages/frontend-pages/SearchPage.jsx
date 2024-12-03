@@ -4,6 +4,7 @@ import axios from 'axios';
 import BreadCrums from '../../common/BreadCrums';
 import SidebarFilter from '../../components/Search-page-components/SidebarFilter';
 import ProductCard from '../../common/ProductCard';
+import { getRequest } from '../../Requests/Request';
 
 const SearchPage = () => {
   const [searchQuery, setSearchQuery] = useState();
@@ -18,7 +19,7 @@ const SearchPage = () => {
   const fetchProducts = async (query) => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:5000/product/search?q=${query}`); // Update port if necessary
+      const response = await getRequest(`product/search?q=${query}`); // Update port if necessary
       // console.log("the search resposne" , response.data)
       setProducts(response.data?.body || []);
     } catch (error) {

@@ -4,6 +4,7 @@ import axios from 'axios';
 import BreadCrums from '../../common/BreadCrums';
 import SidebarFilter from '../../components/Search-page-components/SidebarFilter';
 import ProductCard from '../../common/ProductCard';
+import { getRequest } from '../../Requests/Request';
 
 const ShopPage = () => {
   const [searchQuery, setSearchQuery] = useState();
@@ -18,9 +19,10 @@ const ShopPage = () => {
   const fetchProducts = async (query) => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:5000/product/all-products`); // Update port if necessary
-      // console.log("the search resposne" , response.data)
-      setProducts(response.data?.body);
+      const response = await getRequest(`product/all-products`); // Update port if necessary
+      
+      console.log("the search resposne" , response)
+      setProducts(response?.body);
     } catch (error) {
       console.error("Error fetching products:", error);
       setProducts([]);
@@ -97,8 +99,8 @@ const ShopPage = () => {
           <div className="w-2/3 flex flex-wrap items-center gap-9 xl:gap-7">
             {loading ? (
               <p>Loading products...</p>
-            ) : products.length > 0 ? (
-              products.map((product) => (
+            ) : products?.length > 0 ? (
+              products?.map((product) => (
                 <Link className="flex-none" key={product._id}>
                   <ProductCard item={product} />
                 </Link>

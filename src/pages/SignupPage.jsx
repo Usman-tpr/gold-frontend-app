@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import Select from "react-select"; // Import react-select
 import { handleEnterSubmit } from "../constant";
 import { postRequest } from "../Requests/Request"; // Assuming you have a postRequest and getRequest methods
+import { districts } from "../districts/District";
 
 export default function SignupPage() {
   const navigate = useNavigate();
@@ -18,12 +19,11 @@ export default function SignupPage() {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
-  // Location options for react-select
-  const locationOptions = [
-    { value: "new-york", label: "New York" },
-    { value: "san-francisco", label: "San Francisco" },
-    { value: "los-angeles", label: "Los Angeles" },
-  ];
+  // Location options
+  const locationOptions = districts.map((district) => ({
+    value: district,
+    label: district,
+  }));
 
   // for password visibility
   const togglePasswordVisibility = () => {
