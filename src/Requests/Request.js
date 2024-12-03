@@ -10,6 +10,7 @@ const getToken = () => {
   return localStorage.getItem('Gold_token');
 };
 
+
 // Set up request interceptor to add authorization token
 api.interceptors.request.use(
   (config) => {
