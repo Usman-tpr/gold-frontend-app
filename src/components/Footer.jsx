@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* About Section */}
           <div>
-            <h2 className="text-lg font-bold mb-4">About JewelleryShop</h2>
+            <h2 className="text-lg font-bold mb-4">About JewelleryHub</h2>
             <p className="text-sm">
               At JewelleryShop, we offer a wide range of elegant and high-quality
               jewelry to suit every occasion. Our mission is to make your
