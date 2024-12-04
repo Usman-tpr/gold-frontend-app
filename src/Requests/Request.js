@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create an instance of axios with default headers and baseURL
 const api = axios.create({
-  baseURL: 'https://api.gold.ayancurtains.com', // Replace with your backend URL
+  baseURL: 'https://api.gold.ayancurtains.com/', // Replace with your backend URL
 });
 
 // Function to get the token from localStorage
