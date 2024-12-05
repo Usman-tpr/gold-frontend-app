@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { toast } from "react-toastify";
-import Select from "react-select"; // Import react-select
 import { handleEnterSubmit } from "../constant";
 import { postRequest } from "../Requests/Request"; // Assuming you have a postRequest and getRequest methods
 import { districts } from "../districts/District";
@@ -14,7 +13,6 @@ export default function SignupPage() {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [location, setLocation] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
@@ -34,7 +32,7 @@ export default function SignupPage() {
     e.preventDefault();
 
     const phoneRegex = /^[0-9]{11}$/; // Adjust phone validation as needed
-    if (name === "" || phone === "" || password === "" || !location) {
+    if (name === "" || phone === "" || password === "") {
       toast.error("Please Fill All the Fields ...");
     } else if (!phoneRegex.test(phone)) {
       toast.error("Please enter a valid phone number");
@@ -45,7 +43,6 @@ export default function SignupPage() {
           name,
           phone,
           password,
-          location: location.value,
         });
         localStorage.setItem("Gold_token", response?.token);
       console.log(response)
@@ -83,8 +80,8 @@ export default function SignupPage() {
           style={{ boxShadow: "0px 5px 30px 0px #00000008" }}
         >
           <img
-            className="mx-auto h-14 w-14"
-            src="/assets/images/netchain-logo.svg"
+            className="mx-auto h-24 w-24 rounded-full"
+            src="/assets/logo/logo.png"
             alt=""
           />
           <div className="font-bold tracking-wide text-xl md:text-2xl mt-5 mb-2 text-center">
@@ -104,7 +101,7 @@ export default function SignupPage() {
                 </div>
                 <input
                   type="text"
-                  placeholder="John Doe"
+                  placeholder="Enter Your Name ..."
                   className="p-3 md:p-3 rounded-lg text-sm border border-[#EBF0ED] bg-[#FAFAFA] w-full focus:outline-none focus:border-[#EBF0ED]"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -157,7 +154,7 @@ export default function SignupPage() {
               </label>
 
               {/* Location */}
-              <label className="form-control mt-4">
+              {/* <label className="form-control mt-4">
                 <div className="label">
                   <span className="text-xs md:text-base font-bold tracking-wide">
                     Select Your Location
@@ -170,7 +167,7 @@ export default function SignupPage() {
                   className="text-sm"
                   placeholder="Choose your location"
                 />
-              </label>
+              </label> */}
 
               {/* Submit Button */}
               <button

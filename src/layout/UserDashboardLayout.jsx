@@ -11,7 +11,7 @@ import { FaIdeal } from "react-icons/fa6";
 import { IoCartOutline } from "react-icons/io5";
 
 const UserDashboardLayout = ({ children }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -38,14 +38,14 @@ const UserDashboardLayout = ({ children }) => {
         {/* Sidebar start here */}
         <div
           className={`fixed inset-y-0 left-0 3xl:left-auto bg-white border-r transition-all duration-300 z-20 ${
-            isSidebarOpen ? "w-56" : "w-16"
+            isSidebarOpen ? "w-56" : "w-24"
           } flex flex-col justify-between`}
         >
           {/* Sidebar Toggle Button */}
           <div>
             <button
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-              className="m-4 focus:outline-none"
+              className="mt-20 mx-6  text-black"
             >
               {isSidebarOpen ? (
                 <RiCloseLargeLine size={30} /> // Cross icon when open
@@ -171,7 +171,7 @@ const UserDashboardLayout = ({ children }) => {
                 </div> */}
 
                 {/* User Dropdown */}
-                <div className="relative">
+                {/* <div className="relative">
                   <div
                     className="flex items-center gap-2 cursor-pointer"
                     onClick={toggleUserDropdown}
@@ -193,7 +193,6 @@ const UserDashboardLayout = ({ children }) => {
                       }
                       alt="User Avatar"
                     />
-                    {/* Username */}
                     <MdExpandLess
                       className={`transition-transform ${
                         isUserDropdownOpen ? "rotate-0" : "rotate-180"
@@ -218,7 +217,7 @@ const UserDashboardLayout = ({ children }) => {
                       </ul>
                     </div>
                   )}
-                </div>
+                </div> */}
               </div>
             </div>
           </header>

@@ -11,7 +11,7 @@ export default function ProductCreationForm() {
   const [categoryOptions, setCategoryOptions] = useState([]);
   const [subCategoryOptions, setSubCategoryOptions] = useState([]);
   const [price, setPrice] = useState()
-  const [showField , setShowField] = useState('hidden')
+  const [showField, setShowField] = useState('hidden')
   const [formData, setFormData] = useState({
     title: "",
     price: "",
@@ -83,17 +83,17 @@ export default function ProductCreationForm() {
   };
   const handleMetalChange = (selectedOption) => {
     setFormData({ ...formData, metal: selectedOption });
-    if(selectedOption.value == 'Gold'){
-     setShowField("block")
+    if (selectedOption.value == 'Gold') {
+      setShowField("block")
     }
     else if (selectedOption.value == 'Silver') {
       setShowField("hidden")
-      const cost = formData.weight*250;
+      const cost = formData.weight * 250;
       setPrice(cost)
     }
     else if (selectedOption.value == 'Platinum') {
       setShowField("hidden")
-      const cost = formData.weight*80000;
+      const cost = formData.weight * 80000;
       setPrice(cost)
     }
   };
@@ -125,14 +125,14 @@ export default function ProductCreationForm() {
   };
 
   const validateForm = () => {
-    const { title,metal, images,karat,  condition, weight } = formData;
+    const { title, metal, images, karat, condition, weight } = formData;
 
-    if (!title ||    !condition || !weight || !metal) {
+    if (!title || !condition || !weight || !metal) {
       toast.error("All fields are required!");
       return false;
     }
-    if(metal.value == 'Gold'){
-      if(!karat){
+    if (metal.value == 'Gold') {
+      if (!karat) {
         toast.error("All fields are required!");
       }
     }
@@ -243,18 +243,18 @@ export default function ProductCreationForm() {
           />
         </div>
       </div>
-      <div className="w-full bg-white rounded-xl p-3 mb-4 border-l-4 border-usetheme">
+      <div className="w-[70%] mx-auto bg-white rounded-xl p-3 mb-4 border-l-4 border-usetheme">
         <h1 className="text-[#18120F] text-lg font-semibold p-1">Add New Product</h1>
         <form onSubmit={handleSubmit} className="w-full space-y-4">
           <div className="flex flex-col gap-2">
             {/* Title */}
             <div>
-              <label className="text-[#6B6B6B] text-[12px] font-semibold">Product Title <span className="text-red-600">*</span></label>
+              <label className="text-[#6B6B6B] text-[16px] font-semibold">Product Title <span className="text-red-600">*</span></label>
               <input
                 name="title"
                 value={formData.title}
                 onChange={handleChange}
-                className="bg-[#FAFAFA] text-xs font-normal text-[#6B6B6B] rounded-lg w-full py-2 px-2 border border-[#EBF0ED] outline-none"
+                className="bg-[#FAFAFA] text-[14px] font-normal text-black rounded-lg w-full py-3 mt-1 px-2 border border-gray-500 outline-none"
                 type="text"
                 placeholder="Enter product title"
               />
@@ -262,131 +262,140 @@ export default function ProductCreationForm() {
 
             {/* Description */}
             <div>
-              <label className="text-[#6B6B6B] text-[12px] font-semibold">Description</label>
+              <label className="text-[#6B6B6B] text-[16px] font-semibold">Description</label>
               <textarea
                 name="description"
                 value={formData.description}
                 onChange={handleChange}
-                className="bg-[#FAFAFA] text-xs font-normal text-[#6B6B6B] rounded-lg w-full py-2 px-2 border border-[#EBF0ED] outline-none"
+                className="bg-[#FAFAFA] text-[14px] font-normal text-black rounded-lg w-full py-3 mt-1 px-2 border border-gray-500 outline-none"
                 placeholder="Enter product description"
                 rows="3"
               />
             </div>
 
-            {/* Condition */}
-            <div>
-              <label className="text-[#6B6B6B] text-[12px] font-semibold">Condition  <span className="text-red-600">*</span></label>
-              <Select
-                name="condition"
-                value={formData.condition}
-                onChange={handleConditionChange}
-                options={conditionOptions}
-                className="text-xs"
-              />
+            {/* Condition  and weight */}
+            <div className="flex items-center gap-5 mt-5">
+
+              <div>
+                <label className="text-[#6B6B6B] text-[16px] font-semibold">Weight (in grams)  <span className="text-red-600">*</span></label>
+                <input
+                  name="weight"
+                  value={formData.weight}
+                  onChange={handleChange}
+                  className="bg-[#FAFAFA] text-[14px] font-normal text-black rounded-lg w-[80%] py-2  px-2 border border-gray-500 outline-none"
+                  type="Number"
+                  placeholder="Enter product weight in grams"
+                />
+              </div>
+
+              <div className="w-[45%]">
+                <label className="text-[#6B6B6B] text-[16px] font-semibold" aria-required>Metal Type  <span className="text-red-600">*</span></label>
+                <Select
+                  name="metal"
+                  value={formData.metal}
+                  onChange={handleMetalChange}
+                  options={metalOptions}
+                  className="text-xs border border-gray-500  rounded-md"
+                />
+              </div>
+              <div className={`${showField} w-[45%]`}>
+                <label className="text-[#6B6B6B] text-[16px] font-semibold" aria-required>Karatage (Purity) <span className="text-red-600">*</span></label>
+                <Select
+                  name="karat"
+                  value={formData.karat}
+                  onChange={handleKaratChange}
+                  options={karatOptions}
+                  className="text-xs border border-gray-500 rounded-md"
+                />
+              </div>
+
+              {/* Price */}
+              <div className="flex flex-col">
+                <label className="text-[#6B6B6B] text-[16px] font-semibold">Price  <span className="text-red-600">*</span></label>
+                <input
+                  name="price"
+                  value={price}
+                  // onChange={handleChange}
+                  className="bg-[#FAFAFA] text-[14px] font-normal text-black rounded-lg w-[70%] py-2  px-2 border border-gray-500 outline-none"
+                  type="text"
+                  placeholder="Enter product price"
+                />
+              </div>
             </div>
 
-            {/* Weight */}
-            <div>
-              <label className="text-[#6B6B6B] text-[12px] font-semibold">Weight (in grams)  <span className="text-red-600">*</span></label>
-              <input
-                name="weight"
-                value={formData.weight}
-                onChange={handleChange}
-                className="bg-[#FAFAFA] text-xs font-normal text-[#6B6B6B] rounded-lg w-full py-2 px-2 border border-[#EBF0ED] outline-none"
-                type="Number"
-                placeholder="Enter product weight in grams"
-              />
+            <div className="flex items-center gap-5 mt-5">
+              {/* Category */}
+              <div className="w-[40%]">
+                <label className="text-[#6B6B6B] text-[16px] font-semibold">Category</label>
+                <Select
+                  name="category"
+                  value={formData.category}
+                  onChange={handleCategoryChange}
+                  options={categoryOptions}
+                  className="text-xs border border-gray-500 rounded-md"
+                />
+              </div>
+
+              {/* Subcategory */}
+              <div className="w-[30%]">
+                <label className="text-[#6B6B6B] text-[16px] font-semibold">Subcategory</label>
+                <Select
+                  name="subcategory"
+                  value={formData.subcategory}
+                  onChange={handleSubcategoryChange}
+                  options={subCategoryOptions}
+                  className="text-xs border border-gray-500 rounded-md"
+                />
+              </div>
+
+              <div className="w-[40%]">
+                <label className="text-[#6B6B6B] text-[16px] font-semibold">Condition  <span className="text-red-600">*</span></label>
+                <Select
+                  name="condition"
+                  value={formData.condition}
+                  onChange={handleConditionChange}
+                  options={conditionOptions}
+                  className="text-xs border border-gray-500 rounded-md"
+                />
+              </div>
+
+
             </div>
 
-            {/* metal type */}
-
-            <div>
-              <label className="text-[#6B6B6B] text-[12px] font-semibold" aria-required>Metal Type  <span className="text-red-600">*</span></label>
-              <Select
-                name="metal"
-                value={formData.metal}
-                onChange={handleMetalChange}
-                options={metalOptions}
-                className="text-xs"
-              />
-            </div> 
-             
-            <div className={`${showField}`}>
-              <label className="text-[#6B6B6B] text-[12px] font-semibold" aria-required>Karatage (Purity) <span className="text-red-600">*</span></label>
-              <Select
-                name="karat"
-                value={formData.karat}
-                onChange={handleKaratChange}
-                options={karatOptions}
-                className="text-xs"
-              />
-            </div>
-          
 
 
             {/* Location */}
-            <div>
-              <label className="text-[#6B6B6B] text-[12px] font-semibold">Location</label>
-              <Select
-                name="location"
-                value={formData.location}
-                onChange={handleLocationChange}
-                options={locationOptions}
-                className="text-xs"
-              />
+            <div className="flex gap-5 items-center mt-5">
+              <div className="w-[50%]">
+                <label className="text-[#6B6B6B] text-[16px] font-semibold">Location</label>
+                <Select
+                  name="location"
+                  value={formData.location}
+                  onChange={handleLocationChange}
+                  options={locationOptions}
+                  className="text-xs border border-gray-500 rounded-md"
+                />
+              </div>
+
+
+              {/* Are you selling */}
+              <div className="w-[50%]">
+                <label className="text-[#6B6B6B] text-[16px] font-semibold">Are you selling</label>
+                <Select
+                  name="sellingType"
+                  value={formData.sellingType}
+                  onChange={handleSellingTypeChange}
+                  options={sellingTypeOptions}
+                  className="text-xs border border-gray-500 rounded-md"
+                />
+              </div>
             </div>
 
-            {/* Category */}
-            <div>
-              <label className="text-[#6B6B6B] text-[12px] font-semibold">Category</label>
-              <Select
-                name="category"
-                value={formData.category}
-                onChange={handleCategoryChange}
-                options={categoryOptions}
-                className="text-xs"
-              />
-            </div>
 
-            {/* Subcategory */}
-            <div>
-              <label className="text-[#6B6B6B] text-[12px] font-semibold">Subcategory</label>
-              <Select
-                name="subcategory"
-                value={formData.subcategory}
-                onChange={handleSubcategoryChange}
-                options={subCategoryOptions}
-                className="text-xs"
-              />
-            </div>
-            {/* Are you selling */}
-            <div>
-              <label className="text-[#6B6B6B] text-[12px] font-semibold">Are you selling</label>
-              <Select
-                name="sellingType"
-                value={formData.sellingType}
-                onChange={handleSellingTypeChange}
-                options={sellingTypeOptions}
-                className="text-xs"
-              />
-            </div>
-
-            {/* Price */}
-            <div>
-              <label className="text-[#6B6B6B] text-[12px] font-semibold">Price  <span className="text-red-600">*</span></label>
-              <input
-                name="price"
-                value={price}
-                // onChange={handleChange}
-                className="bg-[#FAFAFA] text-xs font-normal text-[#6B6B6B] rounded-lg w-full py-2 px-2 border border-[#EBF0ED] outline-none"
-                type="text"
-                placeholder="Enter product price"
-              />
-            </div>
 
             {/* Image Upload */}
-            <div>
-              <label className="text-[#6B6B6B] text-[12px] font-semibold">Product Images  <span className="text-red-600">*</span></label>
+            <div className="mt-5">
+              <label className="text-[#6B6B6B] text-[16px] font-semibold">Product Images  <span className="text-red-600">*</span></label>
               <input type="file" multiple onChange={handleImageChange} />
               <div className="flex flex-wrap gap-2 mt-2">
                 {formData.images.map((image, index) => (
