@@ -4,7 +4,7 @@ import BreadCrums from "../../common/BreadCrums";
 import ProductCard from "../../common/ProductCard";
 import { getRequest } from "../../Requests/Request";
 
-const ShopPage = () => {
+const GroomPage = () => {
   const [searchQuery, setSearchQuery] = useState();
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState(""); // Track selected filter
@@ -17,7 +17,7 @@ const ShopPage = () => {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const response = await getRequest(`product/all-products`);
+      const response = await getRequest(`product/full-set`);
       console.log("The search response", response);
       setProducts(response?.body);
     } catch (error) {
@@ -149,9 +149,9 @@ const ShopPage = () => {
             </h1>
           </div>
 
-          <div className="w-4/5 flex flex-wrap items-center gap-9 xl:gap-7">
+          <div className="w-4/5  flex flex-wrap items-center gap-9 xl:gap-7">
             {loading ? (
-              <p className="text-center mx-auto">Loading products...</p>
+              <p className="mx-auto">Loading products...</p>
             ) : products?.length > 0 ? (
               products?.map((product) => (
                 <Link className="flex-none" key={product._id}>
@@ -168,4 +168,4 @@ const ShopPage = () => {
   );
 };
 
-export default ShopPage;
+export default GroomPage;

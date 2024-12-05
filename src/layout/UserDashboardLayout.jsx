@@ -11,7 +11,7 @@ import { FaIdeal } from "react-icons/fa6";
 import { IoCartOutline } from "react-icons/io5";
 
 const UserDashboardLayout = ({ children }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
 

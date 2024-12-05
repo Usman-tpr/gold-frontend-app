@@ -23,8 +23,8 @@ const ManageCart = () => {
         fetchData();
     }, []);
     return (
-        <UserDashboardLayout>
-             <div className="flex justify-between  items-center py-5">
+        <UserDashboardLayout className="mx-20">
+             <div className="flex justify-between  items-center py-5 mx-20">
           <BreadCrums
             breadCrum={[
               {
@@ -48,7 +48,7 @@ const ManageCart = () => {
             Add to Cart
           </Link>
         </div>
-            <div className='flex flex-wrap gap-10'>
+            <div className='flex flex-wrap gap-10 mx-20'>
                 {
                     item && item?.map((item) => (
                         <div className="bg-white border border-gray-200 shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">

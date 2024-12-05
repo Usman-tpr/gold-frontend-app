@@ -4,8 +4,8 @@ import AllProducts from '../../../components/user-dashboard-components/manage-pr
 
 export default function AllProductsPage() {
   return (
-   <UserDashboardLayout>
-    <AllProducts />
-   </UserDashboardLayout>
+    <UserDashboardLayout>
+        <AllProducts />
+    </UserDashboardLayout>
   )
 }

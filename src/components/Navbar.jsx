@@ -41,7 +41,8 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            <a href="/" className="text-2xl font-bold text-gray-800">
+            <a href="/" className="text-2xl font-bold text-gray-800 flex items-center">
+            <img src="/assets/logo/logo.png" className='h-14 w-14 rounded-full' alt="" />
               Jewery<span className="text-yellow-500">Shop</span>
             </a>
           </div>
@@ -55,15 +56,15 @@ const Navbar = () => {
               Shop
               <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <Link to='/shop' className="text-gray-700 relative group">
+            <Link to='/groom' className="text-gray-700 relative group">
               Groom Sets
               <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <Link to='/shop' className="text-gray-700 relative group">
+            <Link to='/' className="text-gray-700 relative group">
               Jwellery On Rent
               <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <Link to='/shop' className="text-gray-700 relative group">
+            <Link to='/' className="text-gray-700 relative group">
               Blogs
               <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>

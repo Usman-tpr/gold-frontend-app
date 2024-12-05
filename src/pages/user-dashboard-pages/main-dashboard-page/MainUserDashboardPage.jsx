@@ -5,9 +5,11 @@ import DashboardHomeInterface from '../../../components/user-dashboard-component
 export default function MainUserDashboardPage() {
   return (
     <>
-    <UserDashboardLayout>
-        <DashboardHomeInterface />
-    </UserDashboardLayout>
+      <UserDashboardLayout>
+        <div className='mx-20'>
+          <DashboardHomeInterface />
+        </div>
+      </UserDashboardLayout>
     </>
   )
 }

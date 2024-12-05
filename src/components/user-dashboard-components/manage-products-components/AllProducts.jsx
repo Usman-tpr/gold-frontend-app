@@ -23,6 +23,7 @@ export default function AllProducts() {
 
 
       const handleSearch = (e) => {
+        e.preventDefault()
         const query = e.target.value.trim();
         setSearchQuery(query);
     

@@ -4,8 +4,9 @@ import axios from 'axios';
 // const api = axios.create({
 //   baseURL: 'http://localhost:8002', 
 // });
+import URL from '../functions/URLString';
 const api = axios.create({
-  baseURL: 'https://api.gold.ayancurtains.com/', 
+  baseURL: URL
 });
 
 // Function to get the token from localStorage

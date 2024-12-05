@@ -243,6 +243,12 @@ export default function ProductCreationForm() {
           />
         </div>
       </div>
+
+      {/* <div className="flex justify-between items-center w-[50%] mx-auto">
+        <h1 className="bg-yellow-600 text-white px-10 py-2 rounded-md">Sell Jwellery</h1>
+        <h1 className="bg-yellow-600 text-white px-10 py-2 rounded-md">Rent Jwellery</h1>
+      </div> */}
+
       <div className="w-[70%] mx-auto bg-white rounded-xl p-3 mb-4 border-l-4 border-usetheme">
         <h1 className="text-[#18120F] text-lg font-semibold p-1">Add New Product</h1>
         <form onSubmit={handleSubmit} className="w-full space-y-4">

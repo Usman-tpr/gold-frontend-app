@@ -4,8 +4,10 @@ import AllDeals from '../../../components/user-dashboard-components/manage-deals
 
 const MyDealsPage = () => {
   return (
-    <UserDashboardLayout>
-        <AllDeals />
+    <UserDashboardLayout >
+       <div className='mx-20'>
+       <AllDeals />
+       </div>
     </UserDashboardLayout>
   )
 }
