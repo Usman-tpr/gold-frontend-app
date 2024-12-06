@@ -47,7 +47,7 @@ const CategoriesSection = ( { data } ) => {
   };
 
   return (
-    <section className="relative py-5 bg-gray-200 my-20">
+    <section className="relative py-5  my-20">
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <div className="text-center mb-8">

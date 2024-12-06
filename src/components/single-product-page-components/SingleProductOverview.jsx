@@ -9,6 +9,7 @@ import { getRequest, postRequest } from '../../Requests/Request';  // Assuming `
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FiShoppingCart } from "react-icons/fi";
+import RulesConfirmation from "../RulesConfirmation";
 
 const SingleProductOverview = () => {
   const navigate = useNavigate();
@@ -180,7 +181,7 @@ const SingleProductOverview = () => {
               >
                 <AiOutlineShoppingCart size={24} /> Book Now
               </button>
-              <button
+              {/* <button
                 className="w-full  bg-yellow-600 text-white font-bold py-4 rounded-lg text-lg flex items-center justify-center gap-2 shadow-lg hover:shadow-2xl transform transition-transform hover:scale-105"
                onClick={() => 
 
@@ -189,14 +190,14 @@ const SingleProductOverview = () => {
               >
                 <FiShoppingCart className="text-white w-4 h-4 mr-1 cursor-pointer" size={24}/> Add To Cart
 
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
       </div>
 
       {showConfirmPopup && (
-        <ConfirmationPopup
+        <RulesConfirmation
           isVisible={showConfirmPopup}
           onConfirmConfirmation={handleConfirmConfirmation}
           onConfirmCancel={handleConfirmCancel}

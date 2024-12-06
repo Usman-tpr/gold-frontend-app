@@ -37,7 +37,7 @@ const HeroSection = () => {
           </button>
         </div>
       </div>
-      <SearchDropdown />
+      {/* <SearchDropdown /> */}
     </section>
   );
 };

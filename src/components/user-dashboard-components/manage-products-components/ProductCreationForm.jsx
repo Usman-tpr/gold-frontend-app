@@ -5,13 +5,15 @@ import { toast } from "react-toastify";
 import BreadCrums from "../../../common/BreadCrums";
 import { districts } from "../../../districts/District";
 import { getRequest, postRequest } from "../../../Requests/Request"; // Assuming request.js contains getRequest and postRequest functions
+import Loader from "../../../common/Loader";
 
 export default function ProductCreationForm() {
   const navigate = useNavigate();
-  const [categoryOptions, setCategoryOptions] = useState([]);
+  // const [categoryOptions, setCategoryOptions] = useState([]);
   const [subCategoryOptions, setSubCategoryOptions] = useState([]);
   const [price, setPrice] = useState()
   const [showField, setShowField] = useState('hidden')
+  const [loading , setLoading] = useState(false)
   const [formData, setFormData] = useState({
     title: "",
     price: "",
@@ -37,20 +39,36 @@ export default function ProductCreationForm() {
     { value: "new", label: "New" },
     { value: "used", label: "Used" },
   ];
+  const categoryOptions = [
+    { value: 'F', label: 'Full Set' },
+    { value: 'anklets', label: 'Anklets' },
+    { value: 'bracelets', label: 'Bracelets' },
+    { value: 'brooches', label: 'Brooches' },
+    { value: 'chains', label: 'Chains' },
+    { value: 'charms', label: 'Charms' },
+    { value: 'earrings', label: 'Earrings' },
+    { value: 'necklaces', label: 'Necklaces' },
+    { value: 'pendants', label: 'Pendants' },
+    { value: 'rings', label: 'Rings' },
+    { value: 'sets', label: 'Sets' },
+    { value: 'tiaras', label: 'Tiaras' },
+  ];
+  
   const metalOptions = [
     { value: "Silver", label: "Silver" },
     { value: "Gold", label: "Gold" },
     { value: "Platinum", label: "Platinum" },
+    { value: "Diamond", label: "Diamond" },
   ];
   const karatOptions = [
     { value: "18", label: "18k" },
     { value: "22", label: "22k" },
     { value: "24", label: "24k" },
   ];
-  const sellingTypeOptions = [
-    { value: "F", label: "Full Jewelry Set" },
-    { value: "I", label: "Individual Items" },
-  ];
+  // const sellingTypeOptions = [
+  //   { value: "F", label: "Full Jewelry Set" },
+  //   { value: "I", label: "Individual Items" },
+  // ];
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -96,6 +114,11 @@ export default function ProductCreationForm() {
       const cost = formData.weight * 80000;
       setPrice(cost)
     }
+    else if (selectedOption.value == 'Diamond') {
+      setShowField("hidden")
+      const cost = formData.weight * 120000;
+      setPrice(cost)
+    }
   };
 
   const handleCategoryChange = (selectedOption) => {
@@ -106,9 +129,9 @@ export default function ProductCreationForm() {
     }));
   };
 
-  const handleSubcategoryChange = (selectedOption) => {
-    setFormData({ ...formData, subcategory: selectedOption });
-  };
+  // const handleSubcategoryChange = (selectedOption) => {
+  //   setFormData({ ...formData, subcategory: selectedOption });
+  // };
 
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
@@ -129,6 +152,7 @@ export default function ProductCreationForm() {
 
     if (!title || !condition || !weight || !metal) {
       toast.error("All fields are required!");
+      setLoading(false)
       return false;
     }
     if (metal.value == 'Gold') {
@@ -139,6 +163,7 @@ export default function ProductCreationForm() {
 
     if (images.length === 0) {
       toast.error("Please upload at least one image!");
+      setLoading(false)
       return false;
     }
 
@@ -159,6 +184,7 @@ export default function ProductCreationForm() {
   };
 
   const handleSubmit = async (e) => {
+    setLoading(true)
     e.preventDefault();
 
     if (validateForm()) {
@@ -182,6 +208,7 @@ export default function ProductCreationForm() {
 
       try {
         const response = await postRequest("/product/add", data);
+        setLoading(false)
         console.log("the response product", response)
         toast.success("Product added successfully!");
         navigate(-1);
@@ -192,47 +219,47 @@ export default function ProductCreationForm() {
     }
   };
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await getRequest("/category/getAll");
-        console.log(response.body)
-        console.log(response.status)
+  // useEffect(() => {
+  //   const fetchCategories = async () => {
+  //     try {
+  //       const response = await getRequest("/category/getAll");
+  //       console.log(response.body)
+  //       console.log(response.status)
 
-        const options = response.body.map((e) => ({
-          value: e.name,
-          label: e.name,
-        }));
-        setCategoryOptions(options);
+  //       const options = response.body.map((e) => ({
+  //         value: e.name,
+  //         label: e.name,
+  //       }));
+  //       setCategoryOptions(options);
 
-      } catch (error) {
-        toast.error("Failed to fetch categories");
-      }
-    };
+  //     } catch (error) {
+  //       toast.error("Failed to fetch categories");
+  //     }
+  //   };
 
-    fetchCategories();
-  }, []);
+  //   fetchCategories();
+  // }, []);
 
-  useEffect(() => {
-    const fetchSubCategories = async () => {
-      if (formData.category) {
-        try {
-          const response = await getRequest(`/subCategory/get/${formData.category.value}`);
+  // useEffect(() => {
+  //   const fetchSubCategories = async () => {
+  //     if (formData.category) {
+  //       try {
+  //         const response = await getRequest(`/subCategory/get/${formData.category.value}`);
 
-          const options = response.body.map((e) => ({
-            value: e.name,
-            label: e.name,
-          }));
-          setSubCategoryOptions(options);
+  //         const options = response.body.map((e) => ({
+  //           value: e.name,
+  //           label: e.name,
+  //         }));
+  //         setSubCategoryOptions(options);
 
-        } catch (error) {
-          toast.error("Failed to fetch subcategories");
-        }
-      }
-    };
+  //       } catch (error) {
+  //         toast.error("Failed to fetch subcategories");
+  //       }
+  //     }
+  //   };
 
-    fetchSubCategories();
-  }, [formData.category]);
+  //   fetchSubCategories();
+  // }, [formData.category]);
 
   return (
     <>
@@ -343,7 +370,7 @@ export default function ProductCreationForm() {
               </div>
 
               {/* Subcategory */}
-              <div className="w-[30%]">
+              {/* <div className="w-[30%]">
                 <label className="text-[#6B6B6B] text-[16px] font-semibold">Subcategory</label>
                 <Select
                   name="subcategory"
@@ -352,7 +379,7 @@ export default function ProductCreationForm() {
                   options={subCategoryOptions}
                   className="text-xs border border-gray-500 rounded-md"
                 />
-              </div>
+              </div> */}
 
               <div className="w-[40%]">
                 <label className="text-[#6B6B6B] text-[16px] font-semibold">Condition  <span className="text-red-600">*</span></label>
@@ -365,13 +392,6 @@ export default function ProductCreationForm() {
                 />
               </div>
 
-
-            </div>
-
-
-
-            {/* Location */}
-            <div className="flex gap-5 items-center mt-5">
               <div className="w-[50%]">
                 <label className="text-[#6B6B6B] text-[16px] font-semibold">Location</label>
                 <Select
@@ -384,8 +404,17 @@ export default function ProductCreationForm() {
               </div>
 
 
+            </div>
+
+
+
+            {/* Location */}
+            <div className="flex gap-5 items-center mt-5">
+           
+
+
               {/* Are you selling */}
-              <div className="w-[50%]">
+              {/* <div className="w-[50%]">
                 <label className="text-[#6B6B6B] text-[16px] font-semibold">Are you selling</label>
                 <Select
                   name="sellingType"
@@ -394,7 +423,7 @@ export default function ProductCreationForm() {
                   options={sellingTypeOptions}
                   className="text-xs border border-gray-500 rounded-md"
                 />
-              </div>
+              </div> */}
             </div>
 
 
@@ -425,7 +454,7 @@ export default function ProductCreationForm() {
             type="submit"
             className="text-white bg-yellow-600 rounded-lg w-full py-3"
           >
-            Add Product
+          {loading ? (<div className="mx-auto flex items-center justify-center h-8"><Loader /></div>) :"  Add Product "}
           </button>
         </form>
       </div>

@@ -36,8 +36,8 @@ export default function HomePage() {
   return (
     <>
       <MainHeroSection />
-      <FullSet />
       <CategoriesSection data={categories} />
+      <FullSet />
       <TopProductsSection homeData={homeProducts} />
       <Footer />
 
