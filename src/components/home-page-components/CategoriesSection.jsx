@@ -67,7 +67,7 @@ const CategoriesSection = ( { data } ) => {
         <Slider ref={sliderRef} {...sliderSettings}>
           {data && data?.map((category, index) => (
             <div key={index} className="p-4">
-              <Link to={`/search?q=${category.name}`} className="bg-white shadow-md rounded-lg overflow-hidden text-center p-3 hover:shadow-lg transition-shadow duration-300">
+              <Link to={`/search?q=${category.value}`} className="bg-white shadow-md rounded-lg overflow-hidden text-center p-3 hover:shadow-lg transition-shadow duration-300">
                 {/* Category Icon */}
                 <div className="flex justify-center items-center mb-4 rounded-full">
                    <img
@@ -78,7 +78,7 @@ const CategoriesSection = ( { data } ) => {
                 </div>
 
                 {/* Category Title */}
-                <h3 className="text-lg font-bold text-gray-700">{category.name}</h3>
+                <h3 className="text-lg font-bold text-gray-700">{category.label}</h3>
               </Link>
             </div>
           )) }

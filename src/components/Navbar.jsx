@@ -41,36 +41,36 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            <a href="/" className="text-2xl font-bold text-gray-800 flex items-center">
-            <img src="/assets/logo/logo.png" className='h-14 w-14 rounded-full' alt="" />
+            <a href="/" className="text-lg md:text-2xl font-bold text-gray-800 flex items-center gap-2">
+              <img src="/assets/logo/logo.png" className='h-10 w-10 md:h-14 md:w-14 rounded-full' alt="" />
               Jewery<span className="text-yellow-500">Shop</span>
             </a>
           </div>
 
           <div className="hidden md:flex items-center space-x-6">
-            <Link to='/' className="text-gray-700 relative group">
+            <Link to='/' className="text-gray-700 relative group font-semibold">
               Home
               <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <Link to='/shop' className="text-gray-700 relative group">
+            <Link to='/shop' className="text-gray-700 relative group font-semibold">
               Shop
               <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <Link to='/groom' className="text-gray-700 relative group">
+            <Link to='/groom' className="text-gray-700 relative group font-semibold">
               Groom Sets
               <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <Link to='/' className="text-gray-700 relative group">
+            <Link to='/' className="text-gray-700 relative group font-semibold">
               Jwellery On Rent
               <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <Link to='/' className="text-gray-700 relative group">
+            <Link to='/' className="text-gray-700 relative group font-semibold">
               Blogs
               <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-yellow-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
-         
-          
-          
+
+
+
 
 
           </div>

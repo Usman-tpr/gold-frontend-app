@@ -147,22 +147,31 @@ const SingleProductOverview = () => {
           </div>
 
           {/* Product Details */}
-          <div className="lg:col-span-5 bg-gradient-to-br from-blue-50 to-blue-100 shadow-xl rounded-lg p-8 flex flex-col justify-between relative overflow-hidden border border-blue-100 hover:border-blue-200 transition-all">
+          <div className="lg:col-span-5  rounded-lg p-8 flex flex-col justify-between relative overflow-hidden border border-blue-100 hover:border-blue-200 transition-all">
             <div className="absolute top-0 left-0 w-20 h-20 bg-blue-600 opacity-20 rounded-br-full"></div>
             <div className="absolute bottom-0 right-0 w-20 h-20 bg-blue-600 opacity-20 rounded-tl-full"></div>
 
             <div className="mb-6 z-10">
-              <h1 className="text-5xl font-extrabold mb-4 text-gray-900 leading-tight">
+              <h1 className="text-2xl font-bold mb-4 text-gray-900 leading-tight">
                 {singleProduct.title || "Product Title"}
               </h1>
               <p className="text-3xl font-bold text-blue-600 mb-4 flex items-center space-x-2">
-                <span>${singleProduct?.price}</span>
+                <span>Rs.{singleProduct?.price}</span>
+              </p>
+              <p className="text-lg text-gray-700 mb-4">
+                 Category: {singleProduct?.category || "Location"}
+              </p>
+              <p className="text-lg text-gray-700 mb-4">
+                 Condition: {singleProduct?.condition || "Location"}
+              </p>
+              <p className="text-lg text-gray-700 mb-4">
+                 Weight: {singleProduct?.weight || "0" } g
               </p>
               <p className="text-lg text-gray-700 mb-4">
                 Location: {singleProduct?.location || "Location"}
               </p>
               <p className="text-md text-gray-600 mb-6 leading-relaxed">
-                {singleProduct?.description || "This is a great product!"}
+                {singleProduct?.desc || "This is a great product!"}
               </p>
               <p className="text-md text-gray-600 mb-6 leading-relaxed">
                 Seller: {singleProduct?.userId?.name}

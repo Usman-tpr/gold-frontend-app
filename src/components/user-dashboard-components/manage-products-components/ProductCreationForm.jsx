@@ -50,8 +50,6 @@ export default function ProductCreationForm() {
     { value: 'necklaces', label: 'Necklaces' },
     { value: 'pendants', label: 'Pendants' },
     { value: 'rings', label: 'Rings' },
-    { value: 'sets', label: 'Sets' },
-    { value: 'tiaras', label: 'Tiaras' },
   ];
   
   const metalOptions = [

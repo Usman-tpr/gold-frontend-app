@@ -19,10 +19,10 @@ const FullSet = () => {
     } , [])
   return (
    <>
-      <div className=" mb-8 my-20 mx-20">
+      <div className="mt-10 px-4 lg:px-8  xl:px-[67px]">
           <h2 className="text-2xl font-bold text-gray-800">Browse Full Groom Set</h2>
         </div>
-        <div className="flex items-center gap-9 xl:gap-7 mx-20">
+        <div className="flex flex-wrap items-center gap-9 xl:gap-7 px-4 lg:px-8  xl:px-[67px] mt-5">
               {data && data?.slice(0, 4).map((product) => (
                 <div
                   // to={`/${product.slug}`}

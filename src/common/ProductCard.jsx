@@ -68,8 +68,8 @@ export default function ProductCard({ item }) {
           </div>
 
           <div className="flex justify-between items-center mt-1">
-            <div className="text-base md:text-lg xl:text-xl font-semibold text-black">
-              ${item.price}
+            <div className="text-base md:text-md font-semibold text-black">
+              Rs.{item.price}.00
             </div>
             <div className="flex flex-col items-end text-[8px] md:text-[9px] xl:text-[10px] text-gray-600">
               <span className="font-medium">Condition: {item.condition}</span>
